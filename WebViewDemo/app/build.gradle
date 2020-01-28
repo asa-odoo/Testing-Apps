@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        website1 {
+            keyAlias = 'google'
+            keyPassword 'google'
+        }
+        website2 {
+            keyAlias = 'facebook'
+            keyPassword 'facebook'
+        }
+        website3 {
+            keyAlias = 'twitter'
+            keyPassword 'twitter'
+        }
+        website4 {
+            keyAlias = 'instagram'
+            keyPassword 'instagram'
+        }
+    }
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    buildTypes {
+        debug {
+            resValue "string", "webview_url", "https://www.gmail.com"
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "webview_url", "https://www.gmail.com"
+        }
+        website1 {
+            resValue "string", "webview_url", "https://www.google.com"
+        }
+        website2 {
+            resValue "string", "webview_url", "https://www.facebook.com"
+        }
+        website3 {
+            resValue "string", "webview_url", "https://www.twitter.com"
+        }
+        website4 {
+            resValue "string", "webview_url", "https://www.instagram.com"
+        }
+    }
+    flavorDimensions 'website1', 'website2', 'website3', 'website4'
+    productFlavors {
+        google {
+            dimension = 'website1'
+            applicationId = 'com.app.google'
+            versionCode = 1
+            versionName = '1'
+            targetSdkVersion 29
+            minSdkVersion 24
+        }
+        facebook {
+            dimension = 'website2'
+            applicationId = 'com.app.fb'
+            versionCode = 1
+            versionName = '1'
+            targetSdkVersion 29
+            minSdkVersion 24
+        }
+        twitter {
+            dimension = 'website3'
+            applicationId = 'com.app.twitter'
+            versionCode = 1
+            versionName = '1'
+            targetSdkVersion 29
+            minSdkVersion 24
+        }
+        instagram {
+            dimension = 'website4'
+            applicationId = 'com.app.insta'
+            versionCode = 1
+            versionName = '1'
+            targetSdkVersion 29
+            minSdkVersion 28
+        }
+    }
+    defaultConfig {
+        applicationId = 'com.app.main'
+        versionCode = 1
+        versionName = '1'
+        targetSdkVersion 29
+        minSdkVersion 24
+        signingConfig signingConfigs.debug
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+}
